@@ -6,6 +6,10 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
+export interface Registration {
+  id: number;
+  userId: number;
+  eventId: number;
+  registeredAt: Date;
   status: string;
 }

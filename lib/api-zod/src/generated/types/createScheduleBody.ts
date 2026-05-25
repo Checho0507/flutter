@@ -6,6 +6,10 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
-  status: string;
+export interface CreateScheduleBody {
+  title: string;
+  speaker?: string | null;
+  startTime: Date;
+  endTime: Date;
+  room?: string | null;
 }
