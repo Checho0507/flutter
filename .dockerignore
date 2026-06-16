@@ -1,0 +1,63 @@
+# Dependencias y archivos de build
+node_modules/
+**/node_modules/
+dist/
+build/
+*.tsbuildinfo
+*.log
+.npm/
+.cache/
+.turbo/
+.vite/
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+
+# Git y VCS
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+
+# IDE y editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Archivos de documentación
+*.md
+!README.md
+LICENSE
+CHANGELOG.md
+
+# Tests y coverage
+coverage/
+.nyc_output/
+test/
+tests/
+*.test.ts
+*.spec.ts
+*.test.js
+*.spec.js
+
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Nixpacks
+.nixpacks/
+
+# Otros
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
