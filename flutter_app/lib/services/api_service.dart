@@ -55,9 +55,10 @@ class ApiService {
         if (_token != null) 'Authorization': 'Bearer $_token',
       };
 
+  // ✅ CORREGIDO: /api/auth/register
   Future<Map<String, dynamic>> register(String name, String email, String password) async {
     final response = await http.post(
-      Uri.parse('${AppConfig.baseUrl}/register'),
+      Uri.parse('${AppConfig.baseUrl}/api/auth/register'),
       headers: _headers,
       body: jsonEncode({'name': name, 'email': email, 'password': password}),
     );
@@ -70,9 +71,10 @@ class ApiService {
     return {'success': false, 'error': data['error'] ?? 'Error al registrar'};
   }
 
+  // ✅ CORREGIDO: /api/auth/login
   Future<Map<String, dynamic>> login(String email, String password) async {
     final response = await http.post(
-      Uri.parse('${AppConfig.baseUrl}/login'),
+      Uri.parse('${AppConfig.baseUrl}/api/auth/login'),
       headers: _headers,
       body: jsonEncode({'email': email, 'password': password}),
     );
@@ -85,8 +87,9 @@ class ApiService {
     return {'success': false, 'error': data['error'] ?? 'Credenciales inválidas'};
   }
 
+  // ✅ CORREGIDO: /api/events
   Future<List<Event>> getEvents({int? categoryId, String? search}) async {
-    String url = '${AppConfig.baseUrl}/events';
+    String url = '${AppConfig.baseUrl}/api/events';
     final params = <String, String>{};
     if (categoryId != null) params['categoryId'] = categoryId.toString();
     if (search != null && search.isNotEmpty) params['search'] = search;
@@ -101,9 +104,10 @@ class ApiService {
     throw Exception('Error al cargar eventos');
   }
 
+  // ✅ CORREGIDO: /api/events/$id
   Future<Event> getEvent(int id) async {
     final response = await http.get(
-      Uri.parse('${AppConfig.baseUrl}/events/$id'),
+      Uri.parse('${AppConfig.baseUrl}/api/events/$id'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -112,9 +116,10 @@ class ApiService {
     throw Exception('Evento no encontrado');
   }
 
+  // ✅ CORREGIDO: /api/events
   Future<Event> createEvent(Map<String, dynamic> data) async {
     final response = await http.post(
-      Uri.parse('${AppConfig.baseUrl}/events'),
+      Uri.parse('${AppConfig.baseUrl}/api/events'),
       headers: _headers,
       body: jsonEncode(data),
     );
@@ -125,9 +130,10 @@ class ApiService {
     throw Exception(err['error'] ?? 'Error al crear evento');
   }
 
+  // ✅ CORREGIDO: /api/events/$id
   Future<Event> updateEvent(int id, Map<String, dynamic> data) async {
     final response = await http.put(
-      Uri.parse('${AppConfig.baseUrl}/events/$id'),
+      Uri.parse('${AppConfig.baseUrl}/api/events/$id'),
       headers: _headers,
       body: jsonEncode(data),
     );
@@ -138,9 +144,10 @@ class ApiService {
     throw Exception(err['error'] ?? 'Error al actualizar evento');
   }
 
+  // ✅ CORREGIDO: /api/events/$id
   Future<void> deleteEvent(int id) async {
     final response = await http.delete(
-      Uri.parse('${AppConfig.baseUrl}/events/$id'),
+      Uri.parse('${AppConfig.baseUrl}/api/events/$id'),
       headers: _headers,
     );
     if (response.statusCode != 204) {
@@ -149,9 +156,10 @@ class ApiService {
     }
   }
 
+  // ✅ CORREGIDO: /api/categories
   Future<List<Category>> getCategories() async {
     final response = await http.get(
-      Uri.parse('${AppConfig.baseUrl}/categories'),
+      Uri.parse('${AppConfig.baseUrl}/api/categories'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -161,9 +169,10 @@ class ApiService {
     throw Exception('Error al cargar categorías');
   }
 
+  // ✅ CORREGIDO: /api/categories
   Future<Category> createCategory(String name, {String? description}) async {
     final response = await http.post(
-      Uri.parse('${AppConfig.baseUrl}/categories'),
+      Uri.parse('${AppConfig.baseUrl}/api/categories'),
       headers: _headers,
       body: jsonEncode({'name': name, 'description': description}),
     );
@@ -173,9 +182,10 @@ class ApiService {
     throw Exception('Error al crear categoría');
   }
 
+  // ✅ CORREGIDO: /api/locations
   Future<List<Location>> getLocations() async {
     final response = await http.get(
-      Uri.parse('${AppConfig.baseUrl}/locations'),
+      Uri.parse('${AppConfig.baseUrl}/api/locations'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -185,9 +195,10 @@ class ApiService {
     throw Exception('Error al cargar ubicaciones');
   }
 
+  // ✅ CORREGIDO: /api/events/$eventId/schedules
   Future<List<Schedule>> getSchedules(int eventId) async {
     final response = await http.get(
-      Uri.parse('${AppConfig.baseUrl}/events/$eventId/schedules'),
+      Uri.parse('${AppConfig.baseUrl}/api/events/$eventId/schedules'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -197,9 +208,10 @@ class ApiService {
     throw Exception('Error al cargar agenda');
   }
 
+  // ✅ CORREGIDO: /api/events/$eventId/schedules
   Future<Schedule> createSchedule(int eventId, Map<String, dynamic> data) async {
     final response = await http.post(
-      Uri.parse('${AppConfig.baseUrl}/events/$eventId/schedules'),
+      Uri.parse('${AppConfig.baseUrl}/api/events/$eventId/schedules'),
       headers: _headers,
       body: jsonEncode(data),
     );
@@ -209,9 +221,10 @@ class ApiService {
     throw Exception('Error al crear sesión');
   }
 
+  // ✅ CORREGIDO: /api/schedules/$id
   Future<void> deleteSchedule(int id) async {
     final response = await http.delete(
-      Uri.parse('${AppConfig.baseUrl}/schedules/$id'),
+      Uri.parse('${AppConfig.baseUrl}/api/schedules/$id'),
       headers: _headers,
     );
     if (response.statusCode != 204) {
@@ -219,9 +232,10 @@ class ApiService {
     }
   }
 
+  // ✅ CORREGIDO: /api/registrations
   Future<List<Registration>> getRegistrations(int userId) async {
     final response = await http.get(
-      Uri.parse('${AppConfig.baseUrl}/registrations?userId=$userId'),
+      Uri.parse('${AppConfig.baseUrl}/api/registrations?userId=$userId'),
       headers: _headers,
     );
     if (response.statusCode == 200) {
@@ -231,9 +245,10 @@ class ApiService {
     throw Exception('Error al cargar inscripciones');
   }
 
+  // ✅ CORREGIDO: /api/registrations
   Future<Registration> createRegistration(int userId, int eventId) async {
     final response = await http.post(
-      Uri.parse('${AppConfig.baseUrl}/registrations'),
+      Uri.parse('${AppConfig.baseUrl}/api/registrations'),
       headers: _headers,
       body: jsonEncode({'userId': userId, 'eventId': eventId}),
     );
@@ -244,9 +259,10 @@ class ApiService {
     throw Exception(err['error'] ?? 'Error al inscribirse');
   }
 
+  // ✅ CORREGIDO: /api/registrations/$id
   Future<void> deleteRegistration(int id) async {
     final response = await http.delete(
-      Uri.parse('${AppConfig.baseUrl}/registrations/$id'),
+      Uri.parse('${AppConfig.baseUrl}/api/registrations/$id'),
       headers: _headers,
     );
     if (response.statusCode != 204) {
