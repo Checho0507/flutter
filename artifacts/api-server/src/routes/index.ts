@@ -9,12 +9,15 @@ import registrationsRouter from "./registrations";
 
 const router: IRouter = Router();
 
+// Healthcheck sin prefijo (está en /health)
 router.use(healthRouter);
-router.use(authRouter);
-router.use(categoriesRouter);
-router.use(locationsRouter);
-router.use(eventsRouter);
-router.use(schedulesRouter);
-router.use(registrationsRouter);
+
+// ✅ Agregar prefijos a cada router
+router.use("/auth", authRouter);
+router.use("/categories", categoriesRouter);
+router.use("/locations", locationsRouter);
+router.use("/events", eventsRouter);
+router.use("/schedules", schedulesRouter);
+router.use("/registrations", registrationsRouter);
 
 export default router;
