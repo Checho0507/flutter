@@ -4,5 +4,5 @@ class AppConfig {
   // For local testing with iOS simulator use: http://localhost:5000/api
   // For physical device use your machine's local IP: http://192.168.x.x:5000/api
   // For the deployed Railway backend:
-  static const String baseUrl = 'https://workspaceapi-server-production-4343.up.railway.app/api';
+  static const String baseUrl = 'https://workspaceapi-server-production-4343.up.railway.app';
 }
