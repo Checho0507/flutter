@@ -3,23 +3,21 @@ workflows:
     name: Flutter Build
     environment:
       vars:
-        API_URL: "https://tu-api.railway.app"  # Cambia por tu URL de Railway
+        API_URL: "https://workspaceapi-server-production-4343.up.railway.app/"
       flutter: stable
     scripts:
       - name: Get Flutter packages
-        script: flutter pub get
+        script: |
+          cd flutter_app
+          flutter pub get
       
       - name: Build Android APK
-        script: flutter build apk --release --dart-define=API_URL=$API_URL
-      
-      - name: Build iOS IPA
-        script: flutter build ipa --release --dart-define=API_URL=$API_URL
-      
+        script: |
+          cd flutter_app
+          flutter build apk --release --dart-define=API_URL=$API_URL
     artifacts:
-      - build/app/outputs/flutter-apk/*.apk
-      - build/ios/ipa/*.ipa
-    
+      - flutter_app/build/app/outputs/flutter-apk/*.apk
     publishing:
       email:
         recipients:
-          - tu-email@example.com  # Cambia por tu email
+          - checho.mlj@gmail.com
